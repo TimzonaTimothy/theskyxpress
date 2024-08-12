@@ -1,0 +1,201 @@
+{% extends 'box/base.html' %} 
+{% load static %}
+{% block content %} 
+
+<style>
+  /* Make form bold on all devices */
+  .search {
+    font-weight: bold;
+  }
+  #sec-bt{
+    width:80%;
+  }
+  #bt{
+    width:20%;
+  }
+
+  /* Display input and submit button in column on mobile devices */
+  @media only screen and (max-width: 767px) {
+    .input-group {
+      flex-direction: column;
+      align-items: left;
+      padding:auto;
+      width:100%;
+    }
+    #sec-bt{
+      width:100%;
+      padding:40px;
+    }
+    #bt {
+      width: 100%;
+      margin-top:10px;
+     
+      align-items: center;
+      text-align:center;
+      padding:10px;
+    }
+
+  }
+</style>
+
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcrumb_iner text-center">
+            <div class="breadcrumb_iner_item">
+              <h2>Tracking</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<br><br><br>
+
+
+{% if couriers %}
+
+<center>
+  {% comment %} <img width="200px" height="150px" src="{% static 'box/barcode.png' %}" alt=""> {% endcomment %}
+
+  <div class="categories-area section-padding30">
+    <div class="container">
+        
+
+        <div class="container" style="text-align:left;">
+
+          {% for courier in couriers %}
+                            <div class="row">
+
+                                <div class="col-md-3">     
+                                    <h3>
+                                    <center>
+                                            <img src="{% static 'box/barcode.png' %}" />
+                                            <font color="#000">{{courier.tracking_id}}</font></br>
+                                    </center>               
+                                    </h3>    
+                                </div>
+
+                                <div class="col-md-6">     
+                                        
+                                </div>
+                                <br>
+                                {% if courier.status == 'Pending' %}
+                                <div class="col-md-3">
+                                     <h3><font  color="Black" face="arial,verdana"><strong>Current state: </strong></font><span style="background: orangered; padding: 5px 10px; border-radius: 5px;"  class="label label-large" ><font size=2 color="White" face="arial,verdana">{{courier.status}}</font></span>
+                                    </h3>
+                                </div>
+                                {% endif %}
+                                {% if courier.status == 'Approved' %}
+                                <div class="col-md-3">
+                                     <h3><font  color="Black" face="arial,verdana"><strong>Current state: </strong></font><span style="background: green; padding: 5px 10px; border-radius: 5px;"  class="label label-large" ><font size=2 color="White" face="arial,verdana">{{courier.status}}</font></span>
+                                    </h3>
+                                </div>
+                                {% endif %}
+
+                                {% if courier.status == 'Completed' %}
+                                <div class="col-md-3">
+                                     <h3><font  color="Black" face="arial,verdana"><strong>Current state: </strong></font><span style="background: blue; padding: 5px 10px; border-radius: 5px;"  class="label label-large" ><font size=2 color="White" face="arial,verdana">{{courier.status}}</font></span>
+                                    </h3>
+                                </div>
+                                {% endif %}
+
+
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Tracking Number</strong></font><br />
+                                  {{courier.tracking_id}}                                 </div>
+
+                                <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Origin</strong></font><br />
+                                    <div> {{courier.origin}}</div>
+                                </div>
+
+                                <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Destination</strong></font><br />
+                                  {{courier.destination}}</div>
+                        </div>
+
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Sender</strong></font><br />
+                              {{courier.sender_name}}<br>
+                              {{courier.sender_email}}                              </div>
+
+                            <div class="col-md-4"> <font size=2 color="Black" face="arial,verdana"><strong>Weight:</strong></font>{{courier.weight}}&nbsp;<br />
+                                <div> </div>
+                            </div>
+
+                            <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Receiver</strong></font><br />
+                              {{courier.reciever_name}}<br>
+                              {{courier.reciever_email}}                             </div>
+                        </div>
+
+                        <hr />
+
+
+                        <div class="row">
+                            <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Description</strong></font><br />
+                              {{courier.description}}                              </div>
+
+                            <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Collection Date</strong></font><br />
+                                <div> {{courier.collection_date}} </div>
+                            </div>
+
+                            <div class="col-md-4"> <font size=3 color="Black" face="arial,verdana"><strong>Delivery Date</strong></font><br />
+                              {{courier.delivery_date}}
+                            </div>
+                        </div>
+
+                        <hr>
+                        {% for histroy in histroys %}
+                        <div class="row">
+                            <div class=""> <color="Black" face="arial,verdana"><h3><b>SHIPPING HISTORY</b></h3></font><br />
+                            <b>Current Location: </b>{{ histroy.current_location }}<br>
+                            <b>Current Status: </b>{{ histroy.current_status }}<br>
+                           <p>{{ histroy.details|linebreaksbr }}</p>                              
+                            </div>
+                        </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- //services -->
+          {% endfor %} 
+        </div>
+        <div class="">
+          
+      </div>
+    </div>
+</div>
+<!-- Categories Area End -->
+
+      
+    {% else %}
+    <br>
+      
+      <form  action="{% url 'search' %}" class="search" method="GET">
+        <div class="">
+            <div class="input-group" style="display: flex;padding: 20px 22px; width: 100%;font-size:larger;">
+                <input id="sec-bt" style="border-color: #f39c12;font-size:larger;padding: 20px" type="text" class="form-control" name="q" value="{{ request.GET.q }}" placeholder="Your Parcel ID" required>
+                
+                
+                  <button id="bt" class="btn btn-primary" style="background-color:#6345fe;font-size:larger;" type="submit">
+                    <span class="txt" style="color:white;font-weight: light;">Track</span>
+                  </button>
+                
+            </div>
+        </div>
+      </form>
+    {% endif %}
+    <br>
+    
+
+
+</center>
+
+  <br><br><br>
+{% endblock %}
