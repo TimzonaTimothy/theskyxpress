@@ -29,7 +29,7 @@ SECRET_KEY = '$5a%%cj78_@&x045mb1bqe1el%$&5bnxd%qi=w*=xqb*txl2u-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*', '127.0.0.1','theskyxpress.org','http://theskyxpress.org','https://theskyxpress.org']
+ALLOWED_HOSTS = ['*', '127.0.0.1','theskyxpress.org','http://theskyxpress.org','https://theskyxpress.org','https://theskyxpress.onrender.com']
 
 
 # Application definition
