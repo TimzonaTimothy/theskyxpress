@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'sterli51_theskyxpress',
         'USER': 'sterli51_theskyxpressadmin',
         'PASSWORD': 'xpress88880000',
-        'HOST': '146.70.99.221',
+        'HOST': '176.74.18.130',
         'PORT': '5432',
     }
 }
