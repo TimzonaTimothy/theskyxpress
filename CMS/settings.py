@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$5a%%cj78_@&x045mb1bqe1el%$&5bnxd%qi=w*=xqb*txl2u-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*', '127.0.0.1','theskyxpress.org','http://theskyxpress.org','https://theskyxpress.org','https://theskyxpress.onrender.com','https://theskyxpress-uaqm.onrender.com','https://theskyxpress-92i7.onrender.com']
 
